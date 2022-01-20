@@ -1,6 +1,7 @@
 package greet_server
 
 import (
+	"context"
 	"fmt"
 	"google.golang.org/grpc"
 	"grpc-with-golang/greetpb"
@@ -10,6 +11,15 @@ import (
 
 type server struct {
 	greetpb.UnimplementedGreetServiceServer
+}
+
+func (c *server) Greet(ctx context.Context, req *greetpb.GreetRequest) (*greetpb.GreetResponse, error) {
+	firstName := req.GetRequest().FirstName
+	result := "Hello" + firstName
+	response := &greetpb.GreetResponse{
+		Result: result,
+	}
+	return response, nil
 }
 
 func StartServer(port string) error {

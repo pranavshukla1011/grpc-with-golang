@@ -18,9 +18,8 @@ func TestServerStart(t *testing.T) {
 }
 
 func TestClientConn(t *testing.T) {
-	err := greet_client.CreateConn()
+	err := greet_client.UseConn()
 	if err != nil {
-		log.Println("Client Creation UNSUCCESSFUL")
+		log.Fatal("ERROR WHILE USING GRPC CONN")
 	}
-	log.Println("Client Creation SUCCESSFUL")
 }
